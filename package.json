@@ -1,0 +1,38 @@
+{
+  "name": "secure-exchange",
+  "version": "0.0.1",
+  "description": "Secure information exchange service",
+  "author": "mirkadev",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "node src/main.js",
+    "start:dev": "nodemon src/main.js",
+    "test": "jest"
+  },
+  "keywords": ["secure", "information", "exchange"],
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.9",
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.4.7",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.js$",
+    "collectCoverageFrom": [
+      "**/*.js"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}

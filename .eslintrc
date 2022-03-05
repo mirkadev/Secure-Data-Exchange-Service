@@ -1,0 +1,11 @@
+{
+  "extends": ["eslint-config-airbnb-base", "plugin:prettier/recommended"],
+  "root": true,
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "rules": {
+    "no-underscore-dangle": "off"
+  }
+}
