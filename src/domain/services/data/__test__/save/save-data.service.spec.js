@@ -5,7 +5,7 @@ const { saveDataPort, saveMetadataPort } = require('../ports');
 const dataService = new SaveDataService(saveDataPort, saveMetadataPort);
 
 beforeEach(() => {
-  jest.resetAllMocks();
+  jest.restoreAllMocks();
 });
 
 describe('Test SaveDataService', () => {

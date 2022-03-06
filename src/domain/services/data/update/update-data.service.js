@@ -10,7 +10,7 @@ class UpdateDataService {
 
   async update({ data, accessTimeCount, expirationTime, adminCode }) {
     if (!adminCode) {
-      throw ValidationException('The adminCode should be provided');
+      throw new ValidationException('The adminCode should be provided');
     }
 
     const metadata = await this._loadMetadataPort.findByAdminCode(adminCode);
@@ -19,12 +19,14 @@ class UpdateDataService {
       throw new NotFoundException('Cannot find data for this admin code');
     }
 
-    if (accessTimeCount) {
-      if (typeof accessTimeCount !== 'number' || accessTimeCount < 1) {
+    if (typeof accessTimeCount === 'number') {
+      if (accessTimeCount < 1) {
         throw new ValidationException('The accessTimeCount should be a number more then 0');
       }
 
       metadata.accessTimeCount = accessTimeCount;
+    } else if (accessTimeCount) {
+      throw new ValidationException('The accessTimeCount should be a number more then 0');
     }
 
     if (expirationTime) {
@@ -40,9 +42,8 @@ class UpdateDataService {
         throw new ValidationException('The expirationTime has wrong format');
       }
 
-      metadata.expirationTime = expirationTime;
-
-      if (!metadata.isExpired) {
+      metadata.expirationTime = dateExpirationTime;
+      if (metadata.isExpired()) {
         throw new ValidationException('The expirationTime should be more then current date');
       }
     }

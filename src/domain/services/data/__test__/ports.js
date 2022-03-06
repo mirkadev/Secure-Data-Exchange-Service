@@ -28,6 +28,13 @@ const loadMetadataPort = {
 
     return null;
   }),
+  findByAdminCode: jest.fn((adminCode) => {
+    if (adminCode === 'testAdminCode') {
+      return metadataEntity;
+    }
+
+    return null;
+  }),
 };
 
 const loadDeletedDataLogPort = {
