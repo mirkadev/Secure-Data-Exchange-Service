@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 const { randomUUID } = require('crypto');
 const { CLEAR_CODE_UUID } = require('../../../constants');
+const { ValidationException } = require('../../../exceptions');
 
 class DeleteAllDataService {
   constructor(
@@ -28,11 +29,11 @@ class DeleteAllDataService {
         allowDelete = true;
       }
 
-      throw new Error('Clear code is wrong');
+      throw new ValidationException('Clear code is wrong');
     }
 
     if (!allowDelete && clearCode !== foundClearCode) {
-      throw new Error('Clear code is wrong');
+      throw new ValidationException('Clear code is wrong');
     }
 
     const allMetadataGenerator = this._loadAllMetadataGeneratorPort();
