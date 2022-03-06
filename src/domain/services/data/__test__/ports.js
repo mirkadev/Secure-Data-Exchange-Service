@@ -11,6 +11,7 @@ const loadDataPort = {
     return null;
   }),
 };
+
 const loadMetadataPort = {
   findByShareCode: jest.fn((shareCode) => {
     if (shareCode === 'testShareCode') {
@@ -28,6 +29,7 @@ const loadMetadataPort = {
     return null;
   }),
 };
+
 const loadDeletedDataLogPort = {
   findByShareCode: jest.fn((shareCode) => {
     if (shareCode === 'deletedShareCode') {
