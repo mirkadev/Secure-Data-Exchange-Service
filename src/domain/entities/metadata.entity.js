@@ -1,6 +1,6 @@
 const { randomString } = require('../utils/random-string');
 
-class InformationEntity {
+class MetadataEntity {
   constructor(data, accessTimeCount, expirationTime, shareCode, adminCode, filename, id = null) {
     this._data = data;
     this._accessTimeCount = accessTimeCount;
@@ -68,4 +68,4 @@ class InformationEntity {
   }
 }
 
-module.exports = { InformationEntity };
+module.exports = { MetadataEntity };
