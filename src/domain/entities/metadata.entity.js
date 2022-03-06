@@ -1,22 +1,15 @@
+const cuid = require('cuid');
 const { randomString } = require('../utils/random-string');
+const { DateEntity } = require('./date.entity');
 
 class MetadataEntity {
-  constructor(data, accessTimeCount, expirationTime, shareCode, adminCode, filename, id = null) {
-    this._data = data;
+  constructor(accessTimeCount, expirationTime, shareCode, adminCode, filename, id = null) {
     this._accessTimeCount = accessTimeCount;
     this._expirationTime = expirationTime;
     this._shareCode = shareCode;
     this._adminCode = adminCode;
     this._filename = filename;
     this._id = id;
-  }
-
-  get data() {
-    return this._data;
-  }
-
-  set data(data) {
-    this._data = data;
   }
 
   get accessTimeCount() {
@@ -28,11 +21,11 @@ class MetadataEntity {
   }
 
   get expirationTime() {
-    return this._expirationTime;
+    return this._expirationTime.toISO();
   }
 
-  set expirationTime(time) {
-    this._expirationTime = time;
+  set expirationTime(timeStampEntity) {
+    this._expirationTime = timeStampEntity;
   }
 
   get shareCode() {
@@ -63,8 +56,21 @@ class MetadataEntity {
     this._id = id;
   }
 
+  isExpired() {
+    if (this._expirationTime.toUNIX() <= DateEntity.now().toUNIX()) {
+      return true;
+    }
+
+    return false;
+  }
+
   static generateCode(size) {
     return randomString(size, 'base64').replace(/[^A-Za-z0-9]/g, () => randomString(1, 'hex'));
+  }
+
+  static generateFilename() {
+    const date = DateEntity.now();
+    return `${cuid()}_${date.toUNIX()}.data`;
   }
 }
 
