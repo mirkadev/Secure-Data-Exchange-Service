@@ -43,4 +43,16 @@ const loadDeletedDataLogPort = {
   }),
 };
 
-module.exports = { loadDataPort, loadMetadataPort, loadDeletedDataLogPort };
+const saveDataPort = {
+  save: jest.fn(() => {
+    return true;
+  }),
+};
+
+const saveMetadataPort = {
+  save: jest.fn(() => {
+    return true;
+  }),
+};
+
+module.exports = { loadDataPort, loadMetadataPort, loadDeletedDataLogPort, saveDataPort, saveMetadataPort };

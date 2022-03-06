@@ -34,7 +34,7 @@ class SaveDataService {
       MetadataEntity.generateFilename(),
     );
 
-    if (!metadata.isExpired) {
+    if (metadata.isExpired()) {
       throw new ValidationException('The expirationTime should be more then current date');
     }
 
