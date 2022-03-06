@@ -62,4 +62,47 @@ const saveMetadataPort = {
   }),
 };
 
-module.exports = { loadDataPort, loadMetadataPort, loadDeletedDataLogPort, saveDataPort, saveMetadataPort };
+const deleteDataPort = {
+  delete: jest.fn(async (metadata) => {
+    if (metadata.filename && /.*\.data$/.test(metadata.filename)) {
+      return true;
+    }
+
+    throw new Error('Metadata should have filename');
+  }),
+};
+
+const deleteMetadataPort = {
+  delete: jest.fn(async (metadata) => {
+    if (!metadata.id) {
+      throw new Error('Metadata should have id');
+    }
+
+    return true;
+  }),
+};
+
+const saveDeletedDataLogPort = {
+  save: jest.fn(async (metadata) => {
+    if (!metadata.filename) {
+      throw new Error('Metadata should have filename');
+    }
+
+    if (!metadata.shareCode) {
+      throw new Error('Metadata should have shareCode');
+    }
+
+    return true;
+  }),
+};
+
+module.exports = {
+  loadDataPort,
+  loadMetadataPort,
+  loadDeletedDataLogPort,
+  saveDataPort,
+  saveMetadataPort,
+  deleteDataPort,
+  deleteMetadataPort,
+  saveDeletedDataLogPort,
+};

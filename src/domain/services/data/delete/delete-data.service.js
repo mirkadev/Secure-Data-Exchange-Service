@@ -13,7 +13,7 @@ class DeleteDataService {
 
   async delete(adminCode) {
     if (!adminCode) {
-      throw ValidationException('The adminCode should be provided');
+      throw new ValidationException('The adminCode should be provided');
     }
 
     const metadata = await this._loadMetadataPort.findByAdminCode(adminCode);
