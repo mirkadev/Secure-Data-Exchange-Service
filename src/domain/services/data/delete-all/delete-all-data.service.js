@@ -40,8 +40,8 @@ class DeleteAllDataService {
 
     process.nextTick(async () => {
       for await (const metadata of allMetadataGenerator) {
-        await this._deleteDataPort.save(metadata);
-        await this._deleteMetadataPort.save(metadata);
+        await this._deleteDataPort.delete(metadata);
+        await this._deleteMetadataPort.delete(metadata);
         await this._saveDeletedDataLogPort.save(metadata);
       }
     });

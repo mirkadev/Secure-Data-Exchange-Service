@@ -19,8 +19,8 @@ class DeleteDataService {
       throw new NotFoundException('Cannot find data for this admin code');
     }
 
-    await this._deleteDataPort.save(metadata);
-    await this._deleteMetadataPort.save(metadata);
+    await this._deleteDataPort.delete(metadata);
+    await this._deleteMetadataPort.delete(metadata);
     await this._saveDeletedDataLogPort.save(metadata);
 
     return true;
