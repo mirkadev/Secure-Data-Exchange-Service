@@ -68,7 +68,7 @@ class DateEntity {
   }
 
   static now() {
-    return DateEntity.of(DateTime.now());
+    return new DateEntity(DateTime.now());
   }
 }
 
