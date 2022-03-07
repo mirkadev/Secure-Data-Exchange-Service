@@ -113,7 +113,7 @@ const saveClearCodePort = {
 };
 
 const loadAllMetadataGeneratorPort = {
-  load: jest.fn(() => {
+  loadAllGenerator: jest.fn(() => {
     let counter = 10;
     async function* allMetadataGenerator() {
       while (counter) {
@@ -127,7 +127,7 @@ const loadAllMetadataGeneratorPort = {
 };
 
 const loadExpiredMetadataGeneratorPort = {
-  load: jest.fn(() => {
+  loadExpiredGenerator: jest.fn(() => {
     let counter = 10;
     async function* allMetadataGenerator() {
       while (counter) {

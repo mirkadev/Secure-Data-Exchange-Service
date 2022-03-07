@@ -41,7 +41,7 @@ class DeleteAllDataService {
     }
 
     process.nextTick(async () => {
-      const allMetadataGenerator = this._loadAllMetadataGeneratorPort.load();
+      const allMetadataGenerator = this._loadAllMetadataGeneratorPort.loadAllGenerator();
       for await (const metadata of allMetadataGenerator) {
         await this._deleteDataPort
           .delete(metadata)
