@@ -31,18 +31,17 @@ class DeleteAllDataService {
     if (!foundClearCode) {
       if (clearCode === CLEAR_CODE_UUID) {
         allowDelete = true;
+      } else {
+        throw new ValidationException('Clear code is wrong');
       }
-
-      throw new ValidationException('Clear code is wrong');
     }
 
     if (!allowDelete && clearCode !== foundClearCode) {
       throw new ValidationException('Clear code is wrong');
     }
 
-    const allMetadataGenerator = this._loadAllMetadataGeneratorPort();
-
     process.nextTick(async () => {
+      const allMetadataGenerator = this._loadAllMetadataGeneratorPort.load();
       for await (const metadata of allMetadataGenerator) {
         await this._deleteDataPort
           .delete(metadata)

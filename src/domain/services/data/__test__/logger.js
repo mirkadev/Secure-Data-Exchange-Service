@@ -4,19 +4,19 @@ class Logger {
   }
 
   log(...data) {
-    console.log(`[${this.name}]`, ...data);
+    console.log(`[${this.name}] [log]`, ...data);
   }
 
   info(...data) {
-    console.info(`[${this.name}]`, ...data);
+    console.info(`[${this.name}] [info]`, ...data);
   }
 
   warn(...data) {
-    console.warn(`[${this.name}]`, ...data);
+    console.warn(`[${this.name}] [warn]`, ...data);
   }
 
   error(...data) {
-    console.error(`[${this.name}]`, ...data);
+    console.error(`[${this.name}] [error]`, ...data);
   }
 }
 

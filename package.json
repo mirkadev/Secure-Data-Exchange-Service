@@ -38,7 +38,10 @@
       "**/*.js"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "setupFiles": [
+      "../.jest/setEnvVars.js"
+    ]
   },
   "dependencies": {
     "cuid": "^2.1.8",
