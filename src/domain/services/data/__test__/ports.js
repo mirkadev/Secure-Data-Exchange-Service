@@ -126,6 +126,20 @@ const loadAllMetadataGeneratorPort = {
   }),
 };
 
+const loadExpiredMetadataGeneratorPort = {
+  load: jest.fn(() => {
+    let counter = 10;
+    async function* allMetadataGenerator() {
+      while (counter) {
+        yield createMetadataEntity();
+        counter -= 1;
+      }
+    }
+
+    return allMetadataGenerator();
+  }),
+};
+
 module.exports = {
   loadDataPort,
   loadMetadataPort,
@@ -138,4 +152,5 @@ module.exports = {
   loadClearCodePort,
   saveClearCodePort,
   loadAllMetadataGeneratorPort,
+  loadExpiredMetadataGeneratorPort,
 };

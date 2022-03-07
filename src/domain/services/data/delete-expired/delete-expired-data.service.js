@@ -11,7 +11,7 @@ class DeleteExpiredDataService {
   }
 
   async deleteExpired() {
-    const expiredMetadataGenerator = this._loadExpiredMetadataGeneratorPort();
+    const expiredMetadataGenerator = this._loadExpiredMetadataGeneratorPort.load();
 
     process.nextTick(async () => {
       for await (const metadata of expiredMetadataGenerator) {
