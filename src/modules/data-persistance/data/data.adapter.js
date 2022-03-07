@@ -1,18 +1,22 @@
-// awsS3
-// loadDataPort; [get]
-// saveDataPort; [save]
-// deleteDataPort; [delete]
+/* eslint-disable no-unused-vars */
+/* eslint-disable class-methods-use-this */
 
 class DataAdapter {
   constructor(dataStorage) {
     this._dataStorage = dataStorage;
   }
 
-  get() {}
+  get(metadata) {
+    return metadata.filename;
+  }
 
-  save() {}
+  save(data, metadata) {
+    return true;
+  }
 
-  delete() {}
+  delete(metadata) {
+    return true;
+  }
 }
 
 module.exports = { DataAdapter };
