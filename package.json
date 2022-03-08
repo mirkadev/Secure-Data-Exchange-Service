@@ -6,8 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "start": "node src/main.js",
-    "start:dev": "nodemon src/main.js",
+    "start": "node ./src/main.js",
+    "start:dev": "nodemon",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },

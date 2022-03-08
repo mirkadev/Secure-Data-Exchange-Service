@@ -47,8 +47,6 @@ class DataExchangeApp {
     });
     console.info('Connect to AWS S3!');
 
-    // TODO: cron
-
     const app = express();
 
     app.use(express.json());
