@@ -11,6 +11,7 @@ Push new data to service
 
 ```json
 // Request >>>
+
 {
     "data": "My very real secret data!",
     "accessTimeCount": 10,
@@ -32,6 +33,7 @@ Update data and/or params by admin code
 
 ```json
 // Request >>>
+
 {
     "adminCode": "JtmSYuE39H",
     "data": "My very real secret data! version 2!", // [opt]
@@ -50,6 +52,7 @@ Get data by share code
 
 ```json
 // <<< Response
+
 {
     "data": "My very real secret data! version 2!"
 }
@@ -61,6 +64,7 @@ Delete data by admin code
 
 ```json
 // Request >>>
+
 {
     "adminCode": "JtmSYuE39H"
 }
@@ -77,6 +81,7 @@ If the clear code is used for the first time, then it must match the code from t
 
 ```json
 // Request >>>
+
 {
     "code": "d90b7cf2-9266-417d-b44b-c83026845ce5"
 }
@@ -94,6 +99,7 @@ Delete all expired data
 
 ```json
 // Request >>>
+
 {}
 
 // <<< Response
