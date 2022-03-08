@@ -6,7 +6,7 @@ class UpdateDataController {
   // POST api/data/update
   async update({ adminCode, data, accessTimeCount, expirationTime }) {
     // TODO: check all params
-    return this._updateDataUseCase.save({ adminCode, data, accessTimeCount, expirationTime });
+    return this._updateDataUseCase.update({ adminCode, data, accessTimeCount, expirationTime });
   }
 }
 

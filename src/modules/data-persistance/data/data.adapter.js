@@ -6,15 +6,15 @@ class DataAdapter {
     this._dataStorage = dataStorage;
   }
 
-  get(filename) {
+  async get(filename) {
     return filename;
   }
 
-  save(data, metadata) {
+  async save(data, metadata) {
     return true;
   }
 
-  delete(metadata) {
+  async delete(metadata) {
     return true;
   }
 }

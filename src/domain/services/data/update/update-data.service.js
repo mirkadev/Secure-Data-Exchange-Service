@@ -48,7 +48,10 @@ class UpdateDataService {
       }
     }
 
-    await this._saveDataPort.save(data, metadata);
+    if (data) {
+      await this._saveDataPort.save(data, metadata);
+    }
+
     await this._saveMetadataPort.save(metadata);
 
     return true;

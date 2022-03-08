@@ -20,12 +20,12 @@ class ClearCodeAdapter {
     }
   }
 
-  async find(clearCode) {
+  async find() {
     const pool = this._clearCodeStorage.getPool();
-    const result = await pool.query('select "code" from "clear_code" where "code" = $1 limit 1', [clearCode]);
+    const result = await pool.query('select "code" from "clear_code" limit 1');
 
     if (result.rows[0]) {
-      return result.rows[0].code;
+      return result.rows[0].code.trimEnd();
     }
 
     return null;

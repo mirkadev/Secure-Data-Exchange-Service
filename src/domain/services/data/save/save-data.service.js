@@ -10,7 +10,11 @@ class SaveDataService {
   }
 
   async save({ data, accessTimeCount, expirationTime }) {
-    if (!DateEntity.isISODateWithTimestamp(expirationTime)) {
+    if (!data) {
+      throw new ValidationException('The data should be provided');
+    }
+
+    if (!DateEntity.isISODateWithTimestamp(expirationTime || '')) {
       throw new ValidationException(
         'The expirationTime should be ISO string with timestamp in format YYYY-MM-DDTHH:mm:ss',
       );
@@ -29,8 +33,8 @@ class SaveDataService {
     const metadata = new MetadataEntity(
       accessTimeCount,
       dateExpirationTime,
-      MetadataEntity.generateCode(SHARE_CODE_SIZE),
-      MetadataEntity.generateCode(ADMIN_CODE_SIZE),
+      MetadataEntity.generateCode(Number(SHARE_CODE_SIZE)),
+      MetadataEntity.generateCode(Number(ADMIN_CODE_SIZE)),
       MetadataEntity.generateFilename(),
     );
 
@@ -41,7 +45,7 @@ class SaveDataService {
     await this._saveDataPort.save(data, metadata);
     await this._saveMetadataPort.save(metadata);
 
-    return true;
+    return { shareCode: metadata.shareCode, adminCode: metadata.adminCode };
   }
 }
 

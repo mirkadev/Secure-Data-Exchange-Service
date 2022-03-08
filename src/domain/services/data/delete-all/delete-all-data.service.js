@@ -42,6 +42,7 @@ class DeleteAllDataService {
 
     process.nextTick(async () => {
       const allMetadataGenerator = this._loadAllMetadataGeneratorPort.loadAllGenerator();
+      let processedCount = 0;
       for await (const metadata of allMetadataGenerator) {
         await this._deleteDataPort
           .delete(metadata)
@@ -64,13 +65,17 @@ class DeleteAllDataService {
               e,
             ),
           );
+
+        processedCount += 1;
       }
+
+      this._logger.info(`Deleting all data is done. Processed data: ${processedCount}`);
     });
 
     const newClearCodeUUID = randomUUID();
     await this._saveClearCodePort.save(newClearCodeUUID);
 
-    return newClearCodeUUID;
+    return { code: newClearCodeUUID };
   }
 }
 

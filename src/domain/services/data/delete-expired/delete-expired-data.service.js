@@ -14,6 +14,7 @@ class DeleteExpiredDataService {
     const expiredMetadataGenerator = this._loadExpiredMetadataGeneratorPort.loadExpiredGenerator();
 
     process.nextTick(async () => {
+      let processedCount = 0;
       for await (const metadata of expiredMetadataGenerator) {
         await this._deleteDataPort
           .delete(metadata)
@@ -36,7 +37,11 @@ class DeleteExpiredDataService {
               e,
             ),
           );
+
+        processedCount += 1;
       }
+
+      this._logger.info(`Deleting expiring data is done. Processed data: ${processedCount}`);
     });
 
     return true;

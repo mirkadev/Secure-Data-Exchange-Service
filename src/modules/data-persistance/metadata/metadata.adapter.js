@@ -9,15 +9,18 @@ class MetadataAdapter {
   }
 
   loadExpiredGenerator() {
+    const self = this;
     async function* expiredGenerator() {
       let next = true;
       while (next) {
-        const result = await this._metadataStorage
-          .find({ expirationTime: { $lt: new Date() } })
+        const result = await self._metadataStorage
+          .findOne({ expirationTime: { $lt: new Date() } })
           .limit(1)
           .exec();
+
         if (result) {
-          yield result;
+          const metadata = MetadataMapper.mapToMetadataEntity(result);
+          yield metadata;
         } else {
           next = false;
         }
@@ -28,12 +31,14 @@ class MetadataAdapter {
   }
 
   loadAllGenerator() {
+    const self = this;
     async function* allGenerator() {
       let next = true;
       while (next) {
-        const result = await this._metadataStorage.findOne();
+        const result = await self._metadataStorage.findOne();
         if (result) {
-          yield result;
+          const metadata = MetadataMapper.mapToMetadataEntity(result);
+          yield metadata;
         } else {
           next = false;
         }
@@ -55,9 +60,12 @@ class MetadataAdapter {
 
   async findByShareCode(shareCode, { decreaseAccessCounter = false }) {
     const result = await this._metadataStorage.findOne({ shareCode });
+
     if (!result) {
       return null;
     }
+
+    const oldAccessTimeCount = result.accessTimeCount;
 
     // there is problem with concurrency
     // in SQL database I would use select for update operator
@@ -70,6 +78,8 @@ class MetadataAdapter {
     }
 
     const metadata = MetadataMapper.mapToMetadataEntity(result);
+    metadata.accessTimeCount = oldAccessTimeCount;
+
     return metadata;
   }
 
@@ -85,7 +95,7 @@ class MetadataAdapter {
   async save(metadata) {
     const model = MetadataMapper.mapToModel(metadata);
 
-    if (model._id) {
+    if (metadata.id) {
       await this._metadataStorage.updateOne(
         { filename: metadata.filename },
         {
