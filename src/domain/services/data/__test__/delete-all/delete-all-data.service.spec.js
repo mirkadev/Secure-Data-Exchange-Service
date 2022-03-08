@@ -30,7 +30,7 @@ describe('Test DeleteAllDataService', () => {
   it('should delete all data', (done) => {
     const result = dataService.deleteAll('testClearCode');
     setImmediate(() => {
-      expect(result).resolves.toMatch(regexUUID);
+      expect(result.then((r) => r.code)).resolves.toMatch(regexUUID);
 
       expect(deleteDataPort.delete.mock.calls.length).toBe(10);
       expect(deleteMetadataPort.delete.mock.calls.length).toBe(10);
@@ -53,7 +53,7 @@ describe('Test DeleteAllDataService', () => {
     const result = dataService.deleteAll('TEST_CLEAR_CODE_UUID');
     setImmediate(() => {
       expect(saveClearCodePort.save.mock.calls[0][0]).toMatch(regexUUID);
-      expect(result).resolves.toMatch(regexUUID);
+      expect(result.then((r) => r.code)).resolves.toMatch(regexUUID);
       done();
     });
   });
