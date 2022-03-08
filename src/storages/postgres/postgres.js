@@ -45,4 +45,4 @@ class Postgres {
   }
 }
 
-module.exports = { Postgres };
+module.exports = { postgres: new Postgres() };

@@ -12,6 +12,6 @@ const Metadata = new Schema({
   filename: String,
 });
 
-const MetadataModel = mongo.model('Metadata', Metadata);
+const metadataModel = mongo.model('Metadata', Metadata);
 
-module.exports = { MetadataModel };
+module.exports = { metadataModel };

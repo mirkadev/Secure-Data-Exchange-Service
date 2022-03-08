@@ -2,7 +2,7 @@
 /* eslint-disable class-methods-use-this */
 require('dotenv').config();
 const { Mongoose } = require('../../storages/mongo/mongo');
-const { Postgres } = require('../../storages/postgres/postgres');
+const { postgres } = require('../../storages/postgres/postgres');
 const { PG_USER, PG_HOST, PG_DATABASE, PG_PORT, PG_PASSWORD, MONGO_DB_URL } = require('./constants');
 
 class DataExchangeApp {
@@ -11,7 +11,6 @@ class DataExchangeApp {
     await mongoose.connect(MONGO_DB_URL);
     console.info('Connected to MongoDB!');
 
-    const postgres = new Postgres();
     await postgres.connectPool({
       user: PG_USER,
       host: PG_HOST,
