@@ -7,15 +7,15 @@ class DataAdapter {
   }
 
   async get(filename) {
-    return filename;
+    return this._dataStorage.get(filename);
   }
 
   async save(data, metadata) {
-    return true;
+    return this._dataStorage.upload(data, metadata.filename);
   }
 
   async delete(metadata) {
-    return true;
+    return this._dataStorage.delete(metadata.filename);
   }
 }
 

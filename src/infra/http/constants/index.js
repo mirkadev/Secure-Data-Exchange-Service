@@ -14,4 +14,8 @@ module.exports = {
   PG_PASSWORD: loadEnv('PG_PASSWORD'),
   PG_PORT: loadEnv('PG_PORT'),
   APP_PORT: loadEnv('APP_PORT'),
+  AWS_BUCKET_NAME: loadEnv('AWS_BUCKET_NAME'),
+  AWS_BUCKET_REGION: loadEnv('AWS_BUCKET_REGION'),
+  AWS_ACCESS_KEY: loadEnv('AWS_ACCESS_KEY'),
+  AWS_SECRET_ACCESS_KEY: loadEnv('AWS_SECRET_ACCESS_KEY'),
 };
