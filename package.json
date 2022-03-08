@@ -17,6 +17,7 @@
     "exchange"
   ],
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.9",
     "eslint": "^8.7.0",
@@ -46,6 +47,7 @@
   "dependencies": {
     "cuid": "^2.1.8",
     "dotenv": "^16.0.0",
+    "express": "^4.17.3",
     "luxon": "^2.3.1",
     "mongoose": "^6.2.4",
     "pg": "^8.7.3"

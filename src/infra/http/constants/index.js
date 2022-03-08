@@ -13,4 +13,5 @@ module.exports = {
   PG_DATABASE: loadEnv('PG_DATABASE'),
   PG_PASSWORD: loadEnv('PG_PASSWORD'),
   PG_PORT: loadEnv('PG_PORT'),
+  APP_PORT: loadEnv('APP_PORT'),
 };

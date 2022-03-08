@@ -6,7 +6,8 @@ class GetDataController {
   // GET api/data/:shareCode
   async getData({ shareCode }) {
     // TODO: check share code
-    return this._getDataUseCase.get(shareCode);
+    const data = await this._getDataUseCase.get(shareCode);
+    return { data };
   }
 }
 

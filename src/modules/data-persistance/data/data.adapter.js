@@ -6,8 +6,8 @@ class DataAdapter {
     this._dataStorage = dataStorage;
   }
 
-  get(metadata) {
-    return metadata.filename;
+  get(filename) {
+    return filename;
   }
 
   save(data, metadata) {

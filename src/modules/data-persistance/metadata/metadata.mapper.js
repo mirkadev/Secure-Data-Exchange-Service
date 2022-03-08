@@ -1,3 +1,4 @@
+const { DateEntity } = require('../../../domain/entities/date.entity');
 const { MetadataEntity } = require('../../../domain/entities/metadata.entity');
 const { MetadataModel } = require('./metadata.odm-entity');
 
@@ -20,7 +21,7 @@ class MetadataMapper {
   static mapToMetadataEntity(data) {
     return new MetadataEntity(
       data.accessTimeCount,
-      data.expirationTime,
+      DateEntity.of(data.expirationTime),
       data.shareCode,
       data.adminCode,
       data.filename,

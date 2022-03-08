@@ -4,7 +4,7 @@ class ClearAllDataController {
   }
 
   // POST api/data/clear
-  async update({ code: clearCode }) {
+  async clearAll({ code: clearCode }) {
     // TODO: check all params
     return this._deleteAllDataUseCase.deleteAll(clearCode);
   }

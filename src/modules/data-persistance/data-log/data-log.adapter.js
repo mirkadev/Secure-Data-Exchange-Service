@@ -7,7 +7,7 @@ class DataLogAdapter {
 
   async save(metadata) {
     const mappedData = DataLogMapper.mapToDataLog(metadata);
-    const pool = this._clearCodeStorage.getPool();
+    const pool = this._dataLogStorage.getPool();
     const result = await pool.query(
       `
         insert into
@@ -24,8 +24,13 @@ class DataLogAdapter {
   }
 
   async findByShareCode(shareCode) {
-    const pool = this._clearCodeStorage.getPool();
+    const pool = this._dataLogStorage.getPool();
     const result = await pool.query('select * from "data_log" where "shareCode" = $1', [shareCode]);
+
+    if (!result.rows[0]) {
+      return null;
+    }
+
     const metadata = DataLogMapper.mapToMetadata(result.rows[0]);
     return metadata;
   }

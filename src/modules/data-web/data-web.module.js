@@ -42,7 +42,7 @@ const saveDataUseCase = new SaveDataService(dataAdapter, metadataAdapter);
 const updateDataUseCase = new UpdateDataService(dataAdapter, metadataAdapter, metadataAdapter);
 
 const clearAllDataController = new ClearAllDataController(deleteAllDataUseCase);
-const deleteController = new DeleteDataController(deleteDataUseCase);
+const deleteDataController = new DeleteDataController(deleteDataUseCase);
 const deleteExpiredDataController = new DeleteExpiredDataController(deleteExpiredDataUseCase);
 const getDataController = new GetDataController(getDataUseCase);
 const pushDataController = new PushDataController(saveDataUseCase);
@@ -50,7 +50,7 @@ const updateDataController = new UpdateDataController(updateDataUseCase);
 
 module.exports = {
   clearAllDataController,
-  deleteController,
+  deleteDataController,
   deleteExpiredDataController,
   getDataController,
   pushDataController,

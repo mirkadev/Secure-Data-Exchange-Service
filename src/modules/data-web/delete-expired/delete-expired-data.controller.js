@@ -4,7 +4,7 @@ class DeleteExpiredDataController {
   }
 
   // POST api/data/cron
-  async update() {
+  async deleteExpired() {
     return this._deleteExpiredDataUseCase.deleteExpired();
   }
 }

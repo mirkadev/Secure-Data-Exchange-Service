@@ -13,6 +13,12 @@ class HttpException extends Error {
   }
 }
 
+class InternalServerErrorException extends HttpException {
+  constructor(message, status) {
+    super(message, status || STATUSES.INTERNAL_SERVER_ERROR, 500);
+  }
+}
+
 class NotFoundException extends HttpException {
   constructor(message, status) {
     super(message, status || STATUSES.NOT_FOUND, 404);
@@ -25,4 +31,4 @@ class BadRequestException extends HttpException {
   }
 }
 
-module.exports = { HttpException, NotFoundException, BadRequestException };
+module.exports = { HttpException, NotFoundException, BadRequestException, InternalServerErrorException };

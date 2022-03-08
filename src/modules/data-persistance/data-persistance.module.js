@@ -1,4 +1,4 @@
-const postgres = require('../../storages/postgres/postgres');
+const { postgres } = require('../../storages/postgres/postgres');
 const { ClearCodeAdapter } = require('./clear-code/clear-code.adapter');
 const { DataAdapter } = require('./data/data.adapter');
 const { DataLogAdapter } = require('./data-log/data-log.adapter');
